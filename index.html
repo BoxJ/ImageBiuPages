@@ -1,98 +1,93 @@
-<!DOCTYPE html>
-<html lang="zh-CN">
+<html>
 <head>
-    <title>片场丨你的电影旅行指南</title>
-    <meta charset="utf-8">
-    <meta content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, width=device-width" name="viewport">
-    <meta content="yes" name="apple-mobile-web-app-capable">
-    <meta content="black" name="apple-mobile-web-app-status-bar-style">
-    <meta content="telephone=no,email=no,date=no,address=no" name="format-detection">
-    <meta content="mobile" name="applicable-device">
-    <meta content="IE=edge, chrome=" http-equiv="X-UA-Compatible">
-    <meta name="keywords" content="电影，经典，场景，实景还原，取景地，旅行，朝圣，圣地巡礼，电影旅行，谷歌街景，卫星照片，路线"/>
-    <meta name="description"
-          content="片场是中国第一个电影取景地信息分享平台。精心收集整理了几百部经典电影几千个取景地，为跟着电影去旅行的旅游者提供详实的信息服务，也为广大电影爱好者提供从地理来理解电影的全新角度，体验阅读中的发现乐趣。"/>
-    <link rel="shortcut icon" href="/favicon.ico"/>
-    <style>
-        * {
-            padding: 0;
-            margin: 0;
-        }
+<meta name="keywords" content="ImageBiu" />
+<meta name="description" content="花样玩图文" />
+<meta content="text/html; charset=UTF-8" http-equiv="content-type">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+<link rel="icon" href="./images/favicon.ico" type="image/x-icon" />
+<title>ImageBiu</title>
 
-        html, body {
-            width: 100%;
-            height: 100%;
-        }
+<script type="text/javascript">
 
-        .container {
-            margin: 0 auto;
-            min-width: 320px;
-            max-width: 640px;
-            position: relative;
-        }
+function isWeixin(){
+    var ua = navigator.userAgent.toLowerCase();
+    if(ua.match(/MicroMessenger/i)=="micromessenger") {
+        return true;
+    } else {
+        return false;
+    }
+}
 
-        .bg-img, .bg-img-x{
-            width: 100%;
-            vertical-align: top;
-            margin-top: -13%;
-        }
+var isiOS       = navigator.userAgent.match('iPad')
+               || navigator.userAgent.match('iPhone')
+               || navigator.userAgent.match('iPod');
+var isAndroid   = navigator.userAgent.match('Android');
+var isDesktop   = !isiOS&&!isAndroid;
 
-        .bg-img-x{
-            display: none;
-        }
+var isJumpToYingyongbao = false;
 
-        .btn-img {
-            position: absolute;
-            left: 50%;
-            bottom: 10%;
-            margin-left: -30%;
-            width: 60%;
-        }
+function setBtnPosition(){
+    if(isDesktop){
+        btnIOSDownload = document.getElementById("btnIOSDownload");
+        var h = document.getElementById('wangzhanMain').offsetHeight;
+        var w = document.getElementById('wangzhanMain').offsetWidth;
+        document.getElementById('btnAndroidDownload').style.left = (w*0.09).toString()+"px";
+        document.getElementById('btnAndroidDownload').style.top = (h*0.66).toString()+"px";
+        document.getElementById('btnAndroidDownload').style.width = (w*0.15).toString()+"px";
+        document.getElementById('btnAndroidDownload').style.height = (h*0.06).toString()+"px";
 
+        document.getElementById('btnIOSDownload').style.left = (w*0.09).toString()+"px";
+        document.getElementById('btnIOSDownload').style.top = (h*0.76).toString()+"px";
+        document.getElementById('btnIOSDownload').style.width = (w*0.15).toString()+"px";
+        document.getElementById('btnIOSDownload').style.height = (h*0.06).toString()+"px";
+    }
+}
 
+window.onresize = setBtnPosition;
 
+window.onload=function(){
+    setBtnPosition();
+    if(isJumpToYingyongbao && !isDesktop){
+        setTimeout(function(){
+            targeturl = "https://itunes.apple.com/app/id1230374130";
+			targeturl = "https://www.imagebiu.com";
+            location = targeturl;
+            var ifr = document.createElement('iframe');
+            ifr.src = targeturl;
+            ifr.style.display = 'none';
+            document.body.appendChild(ifr);
+        }, 500);
+    }
+};
 
-        /* 针对iPhoneX的媒体查询 */
-        @media (device-width: 375px) and (device-height: 812px) and (-webkit-min-device-pixel-ratio : 3){
-            .bg-img{
-                display: none;
-            }
-            .bg-img-x{
-                display: block;
-            }
-            .btn-img{
-                bottom: 25%;
-            }
-        }
-    </style>
-    <script>
-        var isiOS = navigator.userAgent.match('iPad')
-                || navigator.userAgent.match('iPhone')
-                || navigator.userAgent.match('iPod');
-        var isAndroid = navigator.userAgent.match('Android');
-        var isHarmony = navigator.userAgent.match(/arkweb/i);
-        var isDesktop = !isiOS && !isAndroid && !isHarmony;
-        window.onload = function () {
-            if (isHarmony) {
-                setTimeout(function () {
-                    window.location.href = "https://appgallery.huawei.com/app/detail?id=cc.mocation.app.hm";
-                }, 500);
-            }
-            else if (!isDesktop) {
-                setTimeout(function () {
-                    window.location.href = "http://a.app.qq.com/o/simple.jsp?pkgname=cc.mocation.app";
-                }, 500);
-            }
-        };
-    </script>
+</script>
 </head>
-<body>
-<div class="container">
-    <img class="bg-img" src="/download-bg.jpg"/>
-    <img class="bg-img-x" src="/download-bg-x.jpg"/>
-    <a href="http://a.app.qq.com/o/simple.jsp?pkgname=cc.mocation.app">
-        <img class="btn-img" src="/button.png"/>
-    </a>
-</div>
+<style>
+    a:link {color: #ebee15} /* 未访问的链接 */
+    a:visited {color: #ebee15} /* 已访问的链接 */
+    a:link {text-decoration: none}
+</style>
+<body style="margin:0px;background-color: #16181f">
+	<div style="text-align:center;">
+        <div id="wangzhanMain" style="width:100%;background-color: #CC3333">
+            <!-- <img  src="./images/phoneweb_01.png" width="100%"/>
+            <div style="width:100%;height: 80px;background-color: #CC3333;font-size: 30">
+                <a href="https://itunes.apple.com/cn/app/id1230374130" sty>点击去App Store下载</a>
+            </div> -->
+            <div style="height: 80px;"></div>
+            <a href="https://app.mocation.cc/native?type=movie&id=5426" style="height: 50px;">点击去鸿蒙</a>
+            <div style="height: 30px;"></div>
+            <a href="https://app.mocation.cc/native/app/movie/5246" style="height: 50px;">点击去iOS片场(拼接)</a>
+            <a href="https://app.mocation.cc/native?type=movie&id=5426" style="height: 50px;">点击去iOS片场(参数)</a>
+            <div style="height: 30px;"></div>
+            <a href="https://appgallery.huawei.com/app/detail?id=cc.mocation.app.hm" style="height: 50px;">点击去应用市场</a>
+            <div style="height: 80px;"></div>
+            <!-- <img  src="./images/phoneweb_02.png" width="49%"/>
+            <img  src="./images/phoneweb_03.png" width="49%"/> -->
+            <span style="line-height:25px;color: #fffef9">
+            	<a>版权所有@ 2024 ImageBiu</a>
+			</span>
+        </div>
+    </div>
 </body>
 </html>
